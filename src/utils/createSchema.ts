@@ -8,6 +8,7 @@ import { MeResolver } from "../modules/user/Me";
 import { RegisterResolver } from "../modules/user/Register";
 import { CreateUserResolver } from "../modules/user/CreateUser";
 import { ProfilePictureResolver } from "../modules/user/ProfilePictureResolver";
+import { StatsByFilterResolver } from "../modules/boxscore/StatsByFilter";
 
 export const createSchema = () =>
   buildSchema({
@@ -20,7 +21,8 @@ export const createSchema = () =>
       MeResolver,
       RegisterResolver,
       CreateUserResolver,
-      ProfilePictureResolver
+      ProfilePictureResolver,
+      StatsByFilterResolver
     ],
     authChecker: ({ context: { req } }) => {
       return !!req.session.userId;

@@ -1,65 +1,65 @@
-import { Connection } from "typeorm";
-import faker from "faker";
+// import { Connection } from "typeorm";
+// import faker from "faker";
 
-import { testConn } from "../../../test-utils/testConn";
-import { gCall } from "../../../test-utils/gCall";
-import { User } from "../../../entity/User";
+// import { testConn } from "../../../test-utils/testConn";
+// import { gCall } from "../../../test-utils/gCall";
+// import { User } from "../../../entity/User";
 
-let conn: Connection;
-beforeAll(async () => {
-  conn = await testConn();
-});
-afterAll(async () => {
-  await conn.close();
-});
+// let conn: Connection;
+// beforeAll(async () => {
+//   conn = await testConn();
+// });
+// afterAll(async () => {
+//   await conn.close();
+// });
 
-const meQuery = `
-{
-  me {
-    id
-    firstName
-    lastName
-    email
-    name
-  }
-}
-`;
+// const meQuery = `
+// {
+//   me {
+//     id
+//     firstName
+//     lastName
+//     email
+//     name
+//   }
+// }
+// `;
 
-describe("Me", () => {
-  it("get user", async () => {
-    const user = await User.create({
-      firstName: faker.name.firstName(),
-      lastName: faker.name.lastName(),
-      email: faker.internet.email(),
-      password: faker.internet.password()
-    }).save();
+// describe("Me", () => {
+//   it("get user", async () => {
+//     const user = await User.create({
+//       firstName: faker.name.firstName(),
+//       lastName: faker.name.lastName(),
+//       email: faker.internet.email(),
+//       password: faker.internet.password()
+//     }).save();
 
-    const response = await gCall({
-      source: meQuery,
-      userId: user.id
-    });
+//     const response = await gCall({
+//       source: meQuery,
+//       userId: user.id
+//     });
 
-    expect(response).toMatchObject({
-      data: {
-        me: {
-          firstName: user.firstName,
-          id: `${user.id}`,
-          lastName: user.lastName,
-          email: user.email
-        }
-      }
-    });
-  });
+//     expect(response).toMatchObject({
+//       data: {
+//         me: {
+//           firstName: user.firstName,
+//           id: `${user.id}`,
+//           lastName: user.lastName,
+//           email: user.email
+//         }
+//       }
+//     });
+//   });
 
-  it("return null", async () => {
-    const response = await gCall({
-      source: meQuery
-    });
+//   it("return null", async () => {
+//     const response = await gCall({
+//       source: meQuery
+//     });
 
-    expect(response).toMatchObject({
-      data: {
-        me: null
-      }
-    });
-  });
-});
+//     expect(response).toMatchObject({
+//       data: {
+//         me: null
+//       }
+//     });
+//   });
+// });

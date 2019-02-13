@@ -1,0 +1,7 @@
+select name, avg(teamfight_participation) as avg_teamfight_participation from boxscores
+GROUP BY name
+ORDER BY avg_teamfight_participation DESC
+LIMIT 15;
+
+SELECT name, teamfight_participation FROM boxscores
+ORDER BY 
