@@ -2,8 +2,9 @@ import "reflect-metadata";
 import { createConnection } from "typeorm";
 import { Tournament } from "../../entity/Tournament";
 import { matchDetail } from "../opendota/matchDetail";
-import { delay } from "./tournToDb";
 import { BoxScore } from "../../entity/BoxScore";
+
+const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 // select name, avg(deaths), count(*) as games_played as avg_deaths from boxscores
 // GROUP BY name
@@ -18,7 +19,7 @@ const getMatchIdsFromTournament = async () => {
   // manually update each tournament index
   // and save all box scores in db
   // for each tournament match id
-  const index = 17;
+  const index = 1;
 
   const tournaments = await Tournament.find();
 
@@ -39,7 +40,11 @@ const getMatchIdsFromTournament = async () => {
           // have to create 10 instances in db
 
           const scoresToSave = score.map((s: any) => {
-            s.max_hero_hit = s.max_hero_hit.value;
+            if (!s.max_hero_hit) {
+              s.max_hero_hit = null;
+            } else {
+              s.max_hero_hit = s.max_hero_hit.value;
+            }
             return BoxScore.create({
               tourn_id: tournament.id,
               ...s
@@ -47,6 +52,7 @@ const getMatchIdsFromTournament = async () => {
           });
 
           await Promise.all(scoresToSave);
+
           resolve(true);
         } catch (err) {
           reject(err);
@@ -55,6 +61,7 @@ const getMatchIdsFromTournament = async () => {
   );
 
   await Promise.all(getScoreFromOd);
+  console.log(tournament.name);
 };
 
 const doit = () => {

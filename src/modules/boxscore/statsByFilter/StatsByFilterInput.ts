@@ -6,5 +6,8 @@ export class StatsByFilterInput {
   tourn_ids: string[];
 
   @Field(() => [String])
-  filters: string[];
+  avgOptions: string[];
+
+  @Field(() => [String])
+  totalOptions: string[];
 }

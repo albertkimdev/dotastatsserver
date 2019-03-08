@@ -11,7 +11,7 @@ export const getMatchIds = async (link: string) => {
 
     const result = await nightmare
       .goto(link)
-      .wait(1500)
+      .wait(2000)
       .evaluate(() => {
         const popups = Array.from(
           document.getElementsByClassName(
@@ -27,8 +27,12 @@ export const getMatchIds = async (link: string) => {
             if (typeof s.href != "undefined") {
               if (s.href !== null) {
                 if (s.href.includes("dotabuff.com/matches")) {
-                  // @ts-ignore
-                  ids.push(parseInt(s.href.match(/\d+/)[0]));
+                  let idToPush = parseInt(s.href.match(/\d+/)[0]);
+                  if (idToPush === 3593237994) {
+                    idToPush = 3593239494;
+                  }
+                  //@ts-ignore
+                  ids.push(idToPush);
                 }
               }
             }

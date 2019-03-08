@@ -4,9 +4,9 @@
   "host": "localhost",
   "port": 5432,
   "username": "postgres",
-  "password": "",
+  "password": "postgres",
   "database": "dotastatsdev",
   "synchronize": true,
-  "logging": true,
+  "logging": false,
   "entities": ["src/entity/*.*"]
 }

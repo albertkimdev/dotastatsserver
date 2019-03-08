@@ -9,6 +9,7 @@ import { RegisterResolver } from "../modules/user/Register";
 import { CreateUserResolver } from "../modules/user/CreateUser";
 import { ProfilePictureResolver } from "../modules/user/ProfilePictureResolver";
 import { StatsByFilterResolver } from "../modules/boxscore/StatsByFilter";
+import { TournamentFormOptionsResolver } from "../modules/tournament/TournamentFormOptions";
 
 export const createSchema = () =>
   buildSchema({
@@ -22,7 +23,8 @@ export const createSchema = () =>
       RegisterResolver,
       CreateUserResolver,
       ProfilePictureResolver,
-      StatsByFilterResolver
+      StatsByFilterResolver,
+      TournamentFormOptionsResolver
     ],
     authChecker: ({ context: { req } }) => {
       return !!req.session.userId;

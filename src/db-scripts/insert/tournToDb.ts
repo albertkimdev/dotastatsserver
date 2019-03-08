@@ -5,8 +5,7 @@ import { getTournamentInfo } from "../liquid/dpc1718";
 import { getMatchIds } from "../liquid/liquidMatchIds";
 import { Tournament } from "../../entity/Tournament";
 
-export const delay = (ms: number) =>
-  new Promise(resolve => setTimeout(resolve, ms));
+const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
 const addTournamentsToDb = async () => {
   await createConnection();
@@ -20,7 +19,7 @@ const addTournamentsToDb = async () => {
       new Promise(async (resolve, reject) => {
         try {
           console.log(tournInfo1718[i].name);
-          await delay(3000 * i);
+          await delay(8000 * i);
           const matchid: any = await getMatchIds(tournInfo1718[i].link);
 
           await Tournament.create({
@@ -28,6 +27,7 @@ const addTournamentsToDb = async () => {
             date: tourn.date,
             match_ids: matchid
           }).save();
+          console.log(`${matchid.length} matches saved for ${tourn.name}`);
           resolve(true);
         } catch (err) {
           reject(err);
