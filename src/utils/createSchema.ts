@@ -8,7 +8,8 @@ export const createSchema = async () => {
       resolvers: [StatsByFilterResolver, TournamentFormOptionsResolver],
       authChecker: ({ context: { req } }) => {
         return !!req.session.userId;
-      }
+      },
+      validate: false
     });
     return schema;
   } catch (err) {

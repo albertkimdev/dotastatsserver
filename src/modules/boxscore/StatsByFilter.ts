@@ -10,7 +10,8 @@ export class StatsByFilterResolver {
   {
     tourn_ids,
     avgOptions,
-    totalOptions
+    totalOptions,
+    limit
   }: StatsByFilterInput): Promise<StatsResultReturn | null> {
     /**
      * Get all boxscores
@@ -18,7 +19,6 @@ export class StatsByFilterResolver {
      * From boxscores
      * with those tournament ids
      */
-    const limit = 10;
 
     try {
       const avgScores = avgOptions.map((avg) => {

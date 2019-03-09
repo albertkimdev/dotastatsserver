@@ -10,4 +10,7 @@ export class StatsByFilterInput {
 
   @Field(() => [String])
   totalOptions: string[];
+
+  @Field(() => Number)
+  limit: number;
 }
