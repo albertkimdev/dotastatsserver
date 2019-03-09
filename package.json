@@ -35,6 +35,8 @@
     "request": "^2.88.0",
     "type-graphql": "^0.16.0",
     "typeorm": "^0.2.12",
+    "ts-node": "^8.0.2",
+    "typescript": "^3.3.1",
     "uuid": "^3.3.2"
   },
   "devDependencies": {
@@ -57,8 +59,6 @@
     "jest": "^24.0.0",
     "nodemon": "^1.18.9",
     "ts-jest": "^23.10.5",
-    "ts-node": "^8.0.2",
-    "ts-node-dev": "^1.0.0-pre.32",
-    "typescript": "^3.3.1"
+    "ts-node-dev": "^1.0.0-pre.32"
   }
 }
