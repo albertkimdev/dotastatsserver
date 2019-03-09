@@ -1,17 +1,18 @@
+import "dotenv/config";
 import "reflect-metadata";
 import { ApolloServer } from "apollo-server-express";
 import Express from "express";
 import { formatArgumentValidationError } from "type-graphql";
-import { createConnection } from "typeorm";
 import session from "express-session";
 import connectRedis from "connect-redis";
 
 import { redis } from "./redis";
 import cors from "cors";
 import { createSchema } from "./utils/createSchema";
+import { createTypeormConn } from "./utils/createTypeormConn";
 
 const main = async () => {
-  await createConnection();
+  await createTypeormConn();
 
   const schema = await createSchema();
 
@@ -28,7 +29,10 @@ const main = async () => {
   app.use(
     cors({
       credentials: true,
-      origin: "http://localhost:3000"
+      origin:
+        process.env.NODE_ENV === "production"
+          ? (process.env.PROD_ORIGIN as string)
+          : (process.env.DEV_ORIGIN as string)
     })
   );
 
@@ -38,7 +42,7 @@ const main = async () => {
         client: redis as any
       }),
       name: "qid",
-      secret: "KLSDJFLKSDccc33", // @TODO move to .env
+      secret: process.env.SESSION_SECRET as string, // @TODO move to .env
       resave: false,
       saveUninitialized: false,
       cookie: {
@@ -49,9 +53,13 @@ const main = async () => {
     })
   );
 
-  apolloServer.applyMiddleware({ app });
+  app.set("trust proxy", 1);
 
-  app.listen(4000, () => {
+  apolloServer.applyMiddleware({ cors: false, app });
+
+  const PORT = process.env.PORT || 4000;
+
+  app.listen(PORT, () => {
     console.log("Server started on http://localhost:4000/graphql");
   });
 };
