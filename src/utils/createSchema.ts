@@ -1,32 +1,18 @@
 import { buildSchema } from "type-graphql";
-import { ChangePasswordResolver } from "../modules/user/ChangePassword";
-import { ConfirmUserResolver } from "../modules/user/ConfirmUser";
-import { ForgotPasswordResolver } from "../modules/user/ForgotPassword";
-import { LoginResolver } from "../modules/user/Login";
-import { LogoutResolver } from "../modules/user/Logout";
-import { MeResolver } from "../modules/user/Me";
-import { RegisterResolver } from "../modules/user/Register";
-import { CreateUserResolver } from "../modules/user/CreateUser";
-import { ProfilePictureResolver } from "../modules/user/ProfilePictureResolver";
 import { StatsByFilterResolver } from "../modules/boxscore/StatsByFilter";
 import { TournamentFormOptionsResolver } from "../modules/tournament/TournamentFormOptions";
 
-export const createSchema = () =>
-  buildSchema({
-    resolvers: [
-      ChangePasswordResolver,
-      ConfirmUserResolver,
-      ForgotPasswordResolver,
-      LoginResolver,
-      LogoutResolver,
-      MeResolver,
-      RegisterResolver,
-      CreateUserResolver,
-      ProfilePictureResolver,
-      StatsByFilterResolver,
-      TournamentFormOptionsResolver
-    ],
-    authChecker: ({ context: { req } }) => {
-      return !!req.session.userId;
-    }
-  });
+export const createSchema = async () => {
+  try {
+    const schema = await buildSchema({
+      resolvers: [StatsByFilterResolver, TournamentFormOptionsResolver],
+      authChecker: ({ context: { req } }) => {
+        return !!req.session.userId;
+      }
+    });
+    return schema;
+  } catch (err) {
+    console.error(err);
+    return err;
+  }
+};
