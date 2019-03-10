@@ -1,14 +1,14 @@
 import "reflect-metadata";
-import { createConnection } from "typeorm";
 
 import { getTournamentInfo } from "../liquid/dpc1718";
 import { getMatchIds } from "../liquid/liquidMatchIds";
 import { Tournament } from "../../entity/Tournament";
+import { createTypeormConn } from "../../utils/createTypeormConn";
 
-const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const addTournamentsToDb = async () => {
-  await createConnection();
+  await createTypeormConn();
   // 17-18 DPC season
   const tournInfo1718: any = await getTournamentInfo();
   // this provides name, date, link
