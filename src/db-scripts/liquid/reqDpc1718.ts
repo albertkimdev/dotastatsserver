@@ -1,7 +1,9 @@
 import puppeteer from "puppeteer";
 
 export const getTournamentInfo = async () => {
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({
+    args: ["--no-sandbox", "--disable-setuid-sandbox"]
+  });
   const page = await browser.newPage();
 
   const url = "https://liquipedia.net/dota2/Dota_Pro_Circuit/2017-18";
