@@ -19,11 +19,6 @@ const main = async () => {
 
   const tournaments = await Tournament.find();
 
-  if (tournaments.length === 0) {
-    await addTournamentsToDb();
-    await getMatchIdsFromTournament();
-  }
-
   const schema = await createSchema();
 
   const apolloServer = new ApolloServer({
@@ -69,8 +64,13 @@ const main = async () => {
 
   const PORT = process.env.PORT || 4000;
 
-  app.listen(PORT, () => {
+  app.listen(PORT, async () => {
     console.log("Server started on http://localhost:4000/graphql");
+
+    if (tournaments.length === 0) {
+      await addTournamentsToDb();
+      await getMatchIdsFromTournament();
+    }
   });
 };
 
