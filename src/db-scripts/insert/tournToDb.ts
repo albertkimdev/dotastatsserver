@@ -39,4 +39,5 @@ export const addTournamentsToDb = async () => {
   );
 
   await Promise.all(matchIdsAndSave);
+  browser.close();
 };
