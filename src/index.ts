@@ -12,6 +12,7 @@ import { createSchema } from "./utils/createSchema";
 import { createTypeormConn } from "./utils/createTypeormConn";
 import { Tournament } from "./entity/Tournament";
 import { addTournamentsToDb } from "./db-scripts/insert/tournToDb";
+import { getMatchIdsFromTournament } from "./db-scripts/insert/boxscoreToDb";
 
 const main = async () => {
   await createTypeormConn();
@@ -68,6 +69,7 @@ const main = async () => {
 
     if (tournaments.length === 0) {
       await addTournamentsToDb();
+      await getMatchIdsFromTournament();
     }
   });
 };
