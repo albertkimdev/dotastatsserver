@@ -1,10 +1,5 @@
-import puppeteer from "puppeteer";
-
-export const getMatchIds = async (link: string) => {
+export const getMatchIds = async (link: string, browser: any) => {
   try {
-    const browser = await puppeteer.launch({
-      args: ["--no-sandbox", "--disable-setuid-sandbox"]
-    });
     const page = await browser.newPage();
     await page.goto(link, { waitUntil: "load" });
 
@@ -37,7 +32,6 @@ export const getMatchIds = async (link: string) => {
 
       return ids;
     });
-    browser.close();
     return newPage;
   } catch (err) {
     console.log("ERROR FROM PUPPEETMATCHIDS.TS");

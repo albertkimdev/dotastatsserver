@@ -1,3 +1,4 @@
+import puppeteer from "puppeteer";
 import { Tournament } from "../../entity/Tournament";
 import { getTournamentInfo } from "../liquid/reqDpc1718";
 import { getMatchIds } from "../liquid/puppeetMatchIds";
@@ -9,6 +10,9 @@ export const addTournamentsToDb = async () => {
   const tournInfo1718: any = await getTournamentInfo();
   // this provides name, date, link
   // Use link to get match ids
+  const browser = await puppeteer.launch({
+    args: ["--no-sandbox", "--disable-setuid-sandbox"]
+  });
 
   const matchIdsAndSave = tournInfo1718.map(
     (tourn: any, i: number) =>
@@ -16,7 +20,10 @@ export const addTournamentsToDb = async () => {
         try {
           console.log(tournInfo1718[i].name);
           await delay(8000 * i);
-          const matchid: any = await getMatchIds(tournInfo1718[i].link);
+          const matchid: any = await getMatchIds(
+            tournInfo1718[i].link,
+            browser
+          );
 
           await Tournament.create({
             name: tourn.name,
