@@ -37,6 +37,7 @@ export const getMatchIds = async (link: string) => {
 
       return ids;
     });
+    browser.close();
     return newPage;
   } catch (err) {
     console.log("ERROR FROM PUPPEETMATCHIDS.TS");

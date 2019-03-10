@@ -27,6 +27,7 @@ export const getTournamentInfo = async () => {
         };
       });
     });
+    browser.close();
     return newPage;
   } catch (err) {
     console.log("ERROR FROM REQDPC1718");
