@@ -1,6 +1,6 @@
-import { getTournamentInfo } from "../liquid/dpc1718";
-import { getMatchIds } from "../liquid/liquidMatchIds";
 import { Tournament } from "../../entity/Tournament";
+import { getTournamentInfo } from "../liquid/reqDpc1718";
+import { getMatchIds } from "../liquid/puppeetMatchIds";
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 

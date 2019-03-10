@@ -1,6 +1,8 @@
+import "reflect-metadata";
 import { Tournament } from "../../entity/Tournament";
 import { matchDetail } from "../opendota/matchDetail";
 import { BoxScore } from "../../entity/BoxScore";
+import { createTypeormConn } from "../../utils/createTypeormConn";
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -11,7 +13,9 @@ const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 // /*197, 268, 500 - 310 rows ms*/
 
-export const getMatchIdsFromTournament = async () => {
+const getMatchIdsFromTournament = async () => {
+  await createTypeormConn();
+
   // manually update each tournament index
   // and save all box scores in db
   // for each tournament match id
@@ -59,3 +63,9 @@ export const getMatchIdsFromTournament = async () => {
     await delay(10000);
   });
 };
+
+const doit = () => {
+  getMatchIdsFromTournament();
+};
+
+doit();
