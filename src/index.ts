@@ -10,14 +10,9 @@ import { redis } from "./redis";
 import cors from "cors";
 import { createSchema } from "./utils/createSchema";
 import { createTypeormConn } from "./utils/createTypeormConn";
-import { Tournament } from "./entity/Tournament";
-import { addTournamentsToDb } from "./db-scripts/insert/tournToDb";
-import { getMatchIdsFromTournament } from "./db-scripts/insert/boxscoreToDb";
 
 const main = async () => {
   await createTypeormConn();
-
-  const tournaments = await Tournament.find();
 
   const schema = await createSchema();
 
@@ -66,11 +61,6 @@ const main = async () => {
 
   app.listen(PORT, async () => {
     console.log("Server started on http://localhost:4000/graphql");
-
-    if (tournaments.length === 0) {
-      await addTournamentsToDb();
-      await getMatchIdsFromTournament();
-    }
   });
 };
 
