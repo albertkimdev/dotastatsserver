@@ -12,9 +12,7 @@
     "matchids": "ts-node ./src/db-scripts/liquid/liquidMatchIds.ts",
     "matchdetail": "ts-node ./src/db-scripts/opendota/matchDetail.ts",
     "tourntodb": "ts-node ./src/db-scripts/insert/tournToDb.ts",
-    "boxscoretodb": "ts-node ./src/db-scripts/insert/boxscoreToDb.ts",
-    "heroku-prebuild": "export NPM_CONFIG_PRODUCTION=false; export NODE_ENV=; NPM_CONFIG_PRODUCTION=false NODE_ENV=development npm install --only=dev --dev",
-    "heroku-postbuild": "export NPM_CONFIG_PRODUCTION=true; export NODE_ENV=production;"
+    "boxscoretodb": "ts-node ./src/db-scripts/insert/boxscoreToDb.ts"
   },
   "dependencies": {
     "apollo-server-express": "^2.3.3",
@@ -38,6 +36,7 @@
     "type-graphql": "^0.16.0",
     "typeorm": "^0.2.12",
     "ts-node": "^8.0.2",
+    "@types/nightmare": "^2.10.4",
     "typescript": "^3.3.1",
     "uuid": "^3.3.2"
   },
@@ -52,7 +51,6 @@
     "@types/graphql": "^14.0.5",
     "@types/ioredis": "^4.0.6",
     "@types/jest": "^23.3.13",
-    "@types/nightmare": "^2.10.4",
     "@types/node": "^10.12.20",
     "@types/nodemailer": "^4.6.5",
     "@types/request": "^2.48.1",
