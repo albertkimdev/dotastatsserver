@@ -1,6 +1,8 @@
+import "reflect-metadata";
 import { Tournament } from "../../entity/Tournament";
 import { matchDetail } from "../opendota/matchDetail";
 import { BoxScore } from "../../entity/BoxScore";
+import { createTypeormConn } from "../../utils/createTypeormConn";
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -11,13 +13,16 @@ const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 // /*197, 268, 500 - 310 rows ms*/
 
-export const getMatchIdsFromTournament = async () => {
+const getMatchIdsFromTournament = async () => {
+  await createTypeormConn();
   // manually update each tournament index
   // and save all box scores in db
   // for each tournament match id
   const tournaments = await Tournament.find();
 
-  tournaments.forEach(async (tournament) => {
+  for (var z = 0; z < tournaments.length; z++) {
+    // @ts-ignore
+    const tournament = tournaments[z];
     const matches = tournament.match_ids;
 
     // each of these matches needs to be added to db
@@ -40,6 +45,7 @@ export const getMatchIdsFromTournament = async () => {
                 s.max_hero_hit = s.max_hero_hit.value;
               }
               return BoxScore.create({
+                // @ts-ignore
                 tourn_id: tournament.id,
                 ...s
               }).save();
@@ -55,7 +61,10 @@ export const getMatchIdsFromTournament = async () => {
     );
 
     await Promise.all(getScoreFromOd);
+    // @ts-ignore
     console.log(tournament.name);
-    await delay(10000);
-  });
+    await delay(10000 * z);
+  }
 };
+
+getMatchIdsFromTournament();
