@@ -19,7 +19,9 @@ const main = async () => {
   const apolloServer = new ApolloServer({
     schema,
     formatError: formatArgumentValidationError,
-    context: ({ req, res }: any) => ({ req, res })
+    context: ({ req, res }: any) => ({ req, res }),
+    introspection: process.env.NODE_ENV !== "production",
+    playground: process.env.NODE_ENV !== "production"
   });
 
   const app = Express();
@@ -53,7 +55,7 @@ const main = async () => {
     })
   );
 
-  apolloServer.applyMiddleware({ cors: false, app });
+  apolloServer.applyMiddleware({ cors: false, app, path: "/" });
 
   const PORT = process.env.PORT || 4000;
 
