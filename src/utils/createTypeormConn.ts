@@ -9,10 +9,14 @@ export const createTypeormConn = async () => {
   );
   return process.env.NODE_ENV === "production"
     ? createConnection({
-        ...connectionOptions,
-        url: process.env.DATABASE_URL as string,
-        entities: [User, BoxScore, Tournament],
-        name: "default"
-      } as any)
+      ...connectionOptions,
+      entities: [User, BoxScore, Tournament],
+      name: "default",
+      host: process.env.DATABASE_URL as string,
+      database: process.env.DATABASE_NAME as string,
+      username: process.env.TYPEORM_USERNAME as string,
+      password: process.env.TYPEORM_PASSWORD as string,
+      ssl: true
+    } as any)
     : createConnection({ ...connectionOptions, name: "default" });
 };
