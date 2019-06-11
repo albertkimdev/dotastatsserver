@@ -13,4 +13,7 @@ export class StatsByFilterInput {
 
   @Field(() => Number)
   limit: number;
+
+  @Field(() => Number)
+  minGames: number;
 }

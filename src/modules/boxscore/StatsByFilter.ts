@@ -11,7 +11,8 @@ export class StatsByFilterResolver {
     tourn_ids,
     avgOptions,
     totalOptions,
-    limit
+    limit,
+    minGames
   }: StatsByFilterInput): Promise<StatsResultReturn | null> {
     /**
      * Get all boxscores
@@ -33,6 +34,7 @@ export class StatsByFilterResolver {
             })
             .join(" ")}
           GROUP BY name
+          HAVING count(*) >= ${minGames}
           ORDER BY average DESC
           LIMIT ${limit}
         `);
@@ -49,7 +51,7 @@ export class StatsByFilterResolver {
               return ` OR tourn_id = '${id}'`;
             })
             .join(" ")}
-          ORDER BY total DESC
+          ORDER BY total DESC NULLS LAST
           LIMIT ${limit}
         `);
       });
