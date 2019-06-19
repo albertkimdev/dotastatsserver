@@ -18,7 +18,9 @@ const getMatchIdsFromTournament = async () => {
   // manually update each tournament index
   // and save all box scores in db
   // for each tournament match id
-  const tournaments = await Tournament.find();
+  let tournaments = await Tournament.find();
+
+  tournaments = tournaments.slice(0, 5);
 
   for (var z = 0; z < tournaments.length; z++) {
     // @ts-ignore
