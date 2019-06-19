@@ -9,7 +9,7 @@ const doit = async () => {
 
   const dpc1718 = 'https://liquipedia.net/dota2/dota_Pro_Circuit/2017-18'
   const dpc1819 = 'https://liquipedia.net/dota2/Dota_Pro_Circuit/2018-19'
-  const res = await rp(dpc1718)
+  const res = await rp(dpc1819)
   let $ = cheerio.load(res);
 
   let row = $('.divRow')
@@ -56,7 +56,7 @@ const doit = async () => {
 
     await Tournament.create({
       name: t.name,
-      season: 'dpc-1718',
+      season: 'dpc-1819',
       match_ids: game_ids
     }).save();
 
