@@ -8,15 +8,14 @@ export class Tournament extends BaseEntity {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
+  @Column()
+  season: string;
+
   @Field()
   @Column()
   name: string;
 
-  @Field()
-  @Column()
-  date: string;
-
-  @Field(() => [Int])
+  @Field(() => [String])
   @Column("simple-array", { nullable: true })
-  match_ids: number[];
+  match_ids: string[];
 }

@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js test
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js liquid
 
 PATH: 
   C:\Python27\;C:\Python27\Scripts;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Program Files\Dell\DW WLAN Card;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\WIDCOMM\Bluetooth Software\;C:\Program Files\WIDCOMM\Bluetooth Software\syswow64;C:\Program Files\Microsoft SQL Server\110\Tools\Binn\;C:\Program Files\Java\jdk1.7.0_79\bin\;C:\Program Files (x86)\Calibre2\;C:\Python34\Scripts\;C:\Python34\;C:\Program Files (x86)\Heroku\bin;C:\Program Files (x86)\git\cmd;node_modules\npm\bin\;C:\Program Files\MongoDB\Server\3.2\bin\;C:\Users\Albert\AppData\Local\Android\sdk\platform-tools;C:\xampp\php;C:\ProgramData\ComposerSetup\bin;C:\Program Files (x86)\PuTTY\;C:\ProgramData\chocolatey\bin;C:\tools\python2;C:\Users\Albert\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\QuickTime\QTSystem\;C:\Program Files (x86)\Yarn\bin\;C:\Program Files\Amazon\AWSCLI\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\Microsoft VS Code\bin;C:\Users\Albert\AppData\Local\Programs\Git\cmd;C:\Users\Albert\AppData\Local\Programs\Git\mingw64\bin;C:\Users\Albert\AppData\Local\Programs\Git\usr\bin;C:\Program Files\nodejs\;C:\Program Files\heroku\bin;C:\Users\Albert\AppData\Local\Programs\Python\Python36\;C:\Ruby25-x64\bin;C:\Ruby23\bin;C:\Ruby23-x64\bin;C:\RailsInstaller\Git\cmd;C:\RailsInstaller\Ruby2.1.0\bin;C:\Ruby22-x64\bin;C:\Program Files (x86)\Microsoft VS Code\bin;C:\Users\Albert\AppData\Local\Programs\Git\cmd;C:\Program Files\PostgreSQL\10\bin;C:\Program Files\PostgreSQL\10\lib;C:\Users\Albert\AppData\Local\Microsoft\WindowsApps;C:\MongoDB\bin;C:\Program Files\ipfs\go-ipfs;C:\Users\Albert\AppData\Roaming\nvm;C:\Users\Albert\AppData\Local\atom\bin;C:\Users\Albert\AppData\Local\Microsoft\WindowsApps;"C:\Users\Albert\AppData\Roaming\Python\Scripts;";"C:\Users\Albert\AppData\Local\Programs\Python\Python36\Scripts;C:\Users\Albert\AppData\Local\Yarn\bin;C:\Users\Albert\AppData\roaming\Python\Python36\scripts;C:\Users\Albert\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Program Files\PostgreSQL\10\bin;;C:\Program Files\Docker Toolbox;C:\Users\Albert\AppData\Local\now-cli;C:\Users\Albert\AppData\Roaming\npm";C:\Users\Albert\AppData\Roaming\npm;
@@ -29,7 +29,8 @@ npm manifest:
       "matchdetail": "ts-node ./src/db-scripts/opendota/matchDetail.ts",
       "tourntodb": "ts-node ./src/db-scripts/insert/tournToDb.ts",
       "boxscoretodb": "ts-node ./src/db-scripts/insert/boxscoreToDb.ts",
-      "dpc": "ts-node ./src/db-scripts/liquid/reqDpc1718.ts"
+      "dpc": "ts-node ./src/db-scripts/liquid/reqDpc1718.ts",
+      "liquid": "ts-node ./src/db-scripts/tests/liquid.ts"
     },
     "dependencies": {
       "@types/cheerio": "^0.22.10",
@@ -55,6 +56,7 @@ npm manifest:
       "puppeteer": "^1.13.0",
       "reflect-metadata": "^0.1.13",
       "request": "^2.88.0",
+      "request-promise": "^4.2.4",
       "ts-node": "^8.0.2",
       "type-graphql": "^0.16.0",
       "typeorm": "^0.2.12",
@@ -73,6 +75,7 @@ npm manifest:
       "@types/jest": "^23.3.13",
       "@types/node": "^10.12.20",
       "@types/nodemailer": "^4.6.5",
+      "@types/request-promise": "^4.1.44",
       "@types/uuid": "^3.4.4",
       "faker": "^4.1.0",
       "jest": "^24.0.0",
@@ -268,6 +271,10 @@ Lockfile:
     version "2.4.2"
     resolved "https://registry.yarnpkg.com/@types/bcryptjs/-/bcryptjs-2.4.2.tgz#e3530eac9dd136bfdfb0e43df2c4c5ce1f77dfae"
   
+  "@types/bluebird@*":
+    version "3.5.27"
+    resolved "https://registry.yarnpkg.com/@types/bluebird/-/bluebird-3.5.27.tgz#61eb4d75dc6bfbce51cf49ee9bbebe941b2cb5d0"
+  
   "@types/body-parser@*", "@types/body-parser@1.17.0":
     version "1.17.0"
     resolved "https://registry.yarnpkg.com/@types/body-parser/-/body-parser-1.17.0.tgz#9f5c9d9bd04bb54be32d5eb9fc0d8c974e6cf58c"
@@ -411,7 +418,14 @@ Lockfile:
     dependencies:
       "@types/node" "*"
   
-  "@types/request@^2.48.1":
+  "@types/request-promise@^4.1.44":
+    version "4.1.44"
+    resolved "https://registry.yarnpkg.com/@types/request-promise/-/request-promise-4.1.44.tgz#05b59cd18445832fae16b68d5bb3d4621b549485"
+    dependencies:
+      "@types/bluebird" "*"
+      "@types/request" "*"
+  
+  "@types/request@*", "@types/request@^2.48.1":
     version "2.48.1"
     resolved "https://registry.yarnpkg.com/@types/request/-/request-2.48.1.tgz#e402d691aa6670fbbff1957b15f1270230ab42fa"
     dependencies:
@@ -856,6 +870,10 @@ Lockfile:
   binary-extensions@^1.0.0:
     version "1.12.0"
     resolved "https://registry.yarnpkg.com/binary-extensions/-/binary-extensions-1.12.0.tgz#c2d780f53d45bba8317a8902d4ceeaf3a6385b14"
+  
+  bluebird@^3.5.0:
+    version "3.5.5"
+    resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.5.5.tgz#a8d0afd73251effbbd5fe384a77d73003c17a71f"
   
   body-parser@1.18.3, body-parser@^1.18.3:
     version "1.18.3"
@@ -3280,7 +3298,7 @@ Lockfile:
     version "4.4.0"
     resolved "https://registry.yarnpkg.com/lodash.toarray/-/lodash.toarray-4.4.0.tgz#24c4bfcd6b2fba38bfd0594db1179d8e9b656561"
   
-  lodash@^4.13.1, lodash@^4.15.0, lodash@^4.17.10, lodash@^4.17.5:
+  lodash@^4.13.1, lodash@^4.15.0, lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.5:
     version "4.17.11"
     resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
   
@@ -4414,6 +4432,12 @@ Lockfile:
     dependencies:
       lodash "^4.13.1"
   
+  request-promise-core@1.1.2:
+    version "1.1.2"
+    resolved "https://registry.yarnpkg.com/request-promise-core/-/request-promise-core-1.1.2.tgz#339f6aababcafdb31c799ff158700336301d3346"
+    dependencies:
+      lodash "^4.17.11"
+  
   request-promise-native@^1.0.5:
     version "1.0.5"
     resolved "https://registry.yarnpkg.com/request-promise-native/-/request-promise-native-1.0.5.tgz#5281770f68e0c9719e5163fd3fab482215f4fda5"
@@ -4421,6 +4445,15 @@ Lockfile:
       request-promise-core "1.1.1"
       stealthy-require "^1.1.0"
       tough-cookie ">=2.3.3"
+  
+  request-promise@^4.2.4:
+    version "4.2.4"
+    resolved "https://registry.yarnpkg.com/request-promise/-/request-promise-4.2.4.tgz#1c5ed0d71441e38ad58c7ce4ea4ea5b06d54b310"
+    dependencies:
+      bluebird "^3.5.0"
+      request-promise-core "1.1.2"
+      stealthy-require "^1.1.1"
+      tough-cookie "^2.3.3"
   
   request@^2.45.0, request@^2.87.0, request@^2.88.0:
     version "2.88.0"
@@ -4779,7 +4812,7 @@ Lockfile:
     version "1.4.0"
     resolved "https://registry.yarnpkg.com/statuses/-/statuses-1.4.0.tgz#bb73d446da2796106efcc1b601a253d6c46bd087"
   
-  stealthy-require@^1.1.0:
+  stealthy-require@^1.1.0, stealthy-require@^1.1.1:
     version "1.1.1"
     resolved "https://registry.yarnpkg.com/stealthy-require/-/stealthy-require-1.1.1.tgz#35b09875b4ff49f26a777e509b3090a3226bf24b"
   
@@ -5032,7 +5065,7 @@ Lockfile:
       psl "^1.1.28"
       punycode "^2.1.1"
   
-  tough-cookie@^2.3.4:
+  tough-cookie@^2.3.3, tough-cookie@^2.3.4:
     version "2.5.0"
     resolved "https://registry.yarnpkg.com/tough-cookie/-/tough-cookie-2.5.0.tgz#cd9fb2a0aa1d5a12b473bd9fb96fa3dcff65ade2"
     dependencies:
@@ -5552,7 +5585,7 @@ Trace:
   Error: Command failed.
   Exit code: 1
   Command: C:\WINDOWS\system32\cmd.exe
-  Arguments: /d /s /c jest
+  Arguments: /d /s /c ts-node ./src/db-scripts/tests/liquid.ts
   Directory: C:\Users\Albert\Documents\_Dota_Stats_
   Output:
   

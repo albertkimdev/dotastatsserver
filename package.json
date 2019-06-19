@@ -13,7 +13,8 @@
     "matchdetail": "ts-node ./src/db-scripts/opendota/matchDetail.ts",
     "tourntodb": "ts-node ./src/db-scripts/insert/tournToDb.ts",
     "boxscoretodb": "ts-node ./src/db-scripts/insert/boxscoreToDb.ts",
-    "dpc": "ts-node ./src/db-scripts/liquid/reqDpc1718.ts"
+    "dpc": "ts-node ./src/db-scripts/liquid/reqDpc1718.ts",
+    "liquid": "ts-node ./src/db-scripts/tests/liquid.ts"
   },
   "dependencies": {
     "@types/cheerio": "^0.22.10",
@@ -39,6 +40,7 @@
     "puppeteer": "^1.13.0",
     "reflect-metadata": "^0.1.13",
     "request": "^2.88.0",
+    "request-promise": "^4.2.4",
     "ts-node": "^8.0.2",
     "type-graphql": "^0.16.0",
     "typeorm": "^0.2.12",
@@ -57,6 +59,7 @@
     "@types/jest": "^23.3.13",
     "@types/node": "^10.12.20",
     "@types/nodemailer": "^4.6.5",
+    "@types/request-promise": "^4.1.44",
     "@types/uuid": "^3.4.4",
     "faker": "^4.1.0",
     "jest": "^24.0.0",

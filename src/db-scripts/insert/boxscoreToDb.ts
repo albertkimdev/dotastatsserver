@@ -29,7 +29,7 @@ const getMatchIdsFromTournament = async () => {
     // multiple per tournament
 
     const getScoreFromOd = matches.map(
-      (match: number, i: number) =>
+      (match: string, i: number) =>
         new Promise(async (resolve, reject) => {
           try {
             await delay(10000 * i);

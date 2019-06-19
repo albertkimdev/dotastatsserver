@@ -28,6 +28,22 @@ const main = async () => {
 
   const RedisStore = connectRedis(session);
 
+  /**
+   *
+   * 1. twitter
+   * 2. backend automation !!11.
+   *    - scraping scripts to db
+   *    - twitter
+   * 3. content
+   *    - posting content via api bot
+   * 4. buy tesla stock
+   * 5. CICD integration!
+   * 6. user auth oauth
+   * 7. user custom stats
+   * 8. social features
+   * 9. analytics
+   */
+
   app.use(
     cors({
       credentials: true,
