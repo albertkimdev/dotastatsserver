@@ -6,7 +6,7 @@ export class TournamentFormOptionsResolver {
   @Query(() => [Tournament])
   async tournamentFormOptions(): Promise<Tournament[]> {
     return Tournament.find({
-      select: ["name", "id", "date"]
+      select: ["name", "id", "season"]
     });
   }
 }

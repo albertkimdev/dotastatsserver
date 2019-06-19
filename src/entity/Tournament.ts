@@ -8,6 +8,7 @@ export class Tournament extends BaseEntity {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
+  @Field()
   @Column()
   season: string;
 
