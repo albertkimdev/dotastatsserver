@@ -14,7 +14,8 @@
     "tourntodb": "ts-node ./src/db-scripts/insert/tournToDb.ts",
     "boxscoretodb": "ts-node ./src/db-scripts/insert/boxscoreToDb.ts",
     "dpc": "ts-node ./src/db-scripts/liquid/reqDpc1718.ts",
-    "liquid": "ts-node ./src/db-scripts/tests/liquid.ts"
+    "liquid": "ts-node ./src/db-scripts/tests/liquid.ts",
+    "twit": "ts-node ./src/twitter/tests/main.ts"
   },
   "dependencies": {
     "@types/cheerio": "^0.22.10",
@@ -42,6 +43,7 @@
     "request": "^2.88.0",
     "request-promise": "^4.2.4",
     "ts-node": "^8.0.2",
+    "twit": "^2.2.11",
     "type-graphql": "^0.16.0",
     "typeorm": "^0.2.12",
     "typescript": "^3.3.1",
@@ -60,6 +62,7 @@
     "@types/node": "^10.12.20",
     "@types/nodemailer": "^4.6.5",
     "@types/request-promise": "^4.1.44",
+    "@types/twit": "^2.2.22",
     "@types/uuid": "^3.4.4",
     "faker": "^4.1.0",
     "jest": "^24.0.0",
