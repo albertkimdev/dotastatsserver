@@ -1,5 +1,6 @@
 import 'dotenv/config'
 import Twit from 'twit'
+import { createTypeormConn } from '../../utils/createTypeormConn';
 
 var T = new Twit({
   consumer_key: process.env.TWITTER_CONSUMER_KEY as string,
@@ -20,4 +21,12 @@ const doit = async () => {
   })
 }
 
-doit();
+const findTwitData = async () => {
+  await createTypeormConn();
+
+
+}
+
+findTwitData();
+
+// doit();
