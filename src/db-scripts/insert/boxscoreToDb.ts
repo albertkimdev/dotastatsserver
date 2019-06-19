@@ -20,7 +20,7 @@ const getMatchIdsFromTournament = async () => {
   // for each tournament match id
   let tournaments = await Tournament.find();
 
-  tournaments = tournaments.slice(5, 10);
+  tournaments = tournaments.slice(10, 15);
 
   for (var z = 0; z < tournaments.length; z++) {
     // @ts-ignore
