@@ -24,6 +24,16 @@ const doit = async () => {
 const findTwitData = async () => {
   await createTypeormConn();
 
+  /**
+   * what i want is,
+   * data from database
+   * about stats and tournaments
+   * to tweet about
+   * random stats and random tournaments data analysis
+   * to create dynamic tweets
+   */
+
+  
 
 }
 
