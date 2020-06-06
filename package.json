@@ -22,7 +22,7 @@
     "@types/nightmare": "^2.10.4",
     "@types/puppeteer": "^1.12.2",
     "@types/request": "^2.48.1",
-    "apollo-server-express": "^2.3.3",
+    "apollo-server-express": "^2.14.2",
     "axios": "^0.18.0",
     "bcryptjs": "^2.4.3",
     "cheerio": "^1.0.0-rc.2",
