@@ -44,7 +44,7 @@
     "request-promise": "^4.2.4",
     "ts-node": "^8.0.2",
     "twit": "^2.2.11",
-    "type-graphql": "^0.16.0",
+    "type-graphql": "^0.17.6",
     "typeorm": "^0.2.12",
     "typescript": "^3.3.1",
     "uuid": "^3.3.2"
